@@ -38,17 +38,27 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    let inventors1500s = inventors.filter(item => item.year >= 1500 && item.year < 1600);
+    console.table(inventors1500s);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    let inventorsNames = inventors.map(item => `${item.first} ${item.last}`)
+    console.log(inventorsNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    let inventorsSortedByBirth = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+    console.table(inventorsSortedByBirth);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    let inventorsYearsSum = inventors.reduce( (total, item) => total + item.passed - item.year, 0);
+    console.log(inventorsYearsSum);
 
     // 5. Sort the inventors by years lived
+    let inventorsSortedByYearsLived = inventors.sort((a, b) => (a.passed - a.year) > (b.passed - b.year) ? -1 : 1);
+    console.table(inventorsSortedByYearsLived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -56,11 +66,22 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    let peopleSortedByLastName = people.sort( (a, b) => {
+      let aLastName = a.split(', ')[0];
+      let bLastName = b.split(', ')[0];
+      return aLastName > bLastName ? 1 : -1;
+    })
+    console.log(peopleSortedByLastName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    console.log(data);
+    console.log(`Car Instances: ${data.reduce((total, item) => total + (item === 'car'), 0)}`);
+    console.log(`Truck Instances: ${data.reduce((total, item) => total + (item === 'truck'), 0)}`);
+    console.log(`Bike Instances: ${data.reduce((total, item) => total + (item === 'bike'), 0)}`);
+    console.log(`Walk Instances: ${data.reduce((total, item) => total + (item === 'walk'), 0)}`);
+    console.log(`Van Instances: ${data.reduce((total, item) => total + (item === 'van'), 0)}`);
   </script>
 </body>
 </html>
